@@ -13,7 +13,7 @@ export default function TabOneScreen() {
     const [selectedSize,setSselectedSize] = useState("M");
 
     const AddToCart = () =>{
-        
+        console.warn("Adding ")
     }
     return (
         <View style={styles.container}>
@@ -50,12 +50,13 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 10,
         fontWeight: 'bold',
+        marginTop:'auto',
 
     },
     sizesContainer:{
             flexDirection: "row",
             padding:10,
-            justifyContent: "space-around"
+            justifyContent: "space-around",
     },
     size:{
         padding:20,
