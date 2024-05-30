@@ -1,20 +1,25 @@
+import React, { useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Platform, StyleSheet } from 'react-native';
-import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
-import { useContext } from 'react';
-import {useCart} from '@/providers/CartProvider';
+import {CartContext} from "@/providers/CartProvider"; // Adjust import to include CartContext
 
 export default function CartScreen() {
-  const {items} = useContext(useCart);
+  const cart = useContext(CartContext);
+
+  console.log(cart);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>item.length</Text>
+      <Text style={styles.title}>Number of Items in Cart: {cart?.items.length}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/cart.tsx" />
+      {cart?.items && cart?.items.map((item) => (
+      <View key={item.id}>
+        <Text>{item.name}</Text>
+        <Text>Quantity: {item.quantity}</Text>
 
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
+      </View>
+    ))}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
   );
