@@ -7,8 +7,9 @@ export type Product = {
 
 export type PizzaSize = 'S' | 'M' | 'L' | 'XL';
 
+
 export type CartItem = {
-  id: string;
+  id: number;
   product: Product;
   product_id: number;
   size: PizzaSize;

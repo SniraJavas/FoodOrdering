@@ -1,26 +1,19 @@
-import { PizzaSize, Product } from "@/types";
+import { CartItem, PizzaSize, Product } from "@/types";
 import React, { ReactNode, createContext , useContext, useState} from "react";
 
-// Define the type for a cart item
-interface CartItem {
-    id: number;
-    product: Product,
-    product_id: number,
-    name: string;
-    quantity: number;
-    size: string;
-  }
-  
+
   // Define the context value type
   interface CartContextValue {
     items: CartItem[];
     addCartItems: (product : Product, size: CartItem['size']) => void;
+    updateQuantity: (id: number, size: PizzaSize, quantity: number) => void;
   }
   
   // Create the context with an initial value of undefined
   const CartContext = createContext<CartContextValue>({
     items: [],
     addCartItems: (product : Product, size: CartItem['size']) => {},
+    updateQuantity: (id: number, size: PizzaSize, quantity: number)=> {},
   });
   
   // Define the provider props type
@@ -36,17 +29,20 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const addCartItems = (product : Product, size: CartItem['size']) => {
       const newCartItem : CartItem = {
         id: 0,
-        name: product.name,
-        quantity: 0,
         product: product,
-        product_id: product.id,
+        product_id:  product.id,
+        quantity: 1,
         size,
       }
       setItems([newCartItem, ...items]);
     };
   
+    const updateQuantity = (id: number, size: PizzaSize, quantity: number) =>{
+
+    }
+
     return (
-      <CartContext.Provider value={{ items , addCartItems }}>
+      <CartContext.Provider value={{ items, addCartItems, updateQuantity }}>
         {children}
       </CartContext.Provider>
     );
