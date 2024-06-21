@@ -12,11 +12,11 @@ export default function TabOneScreen() {
     const product = products.find((p) => p.id.toString() == id);
     const sizes : PizzaSize[] = ["S", "M", "L", "XL"];
     const [selectedSize, setSselectedSize] = useState<PizzaSize>("M");
-    const { addCartItems } = useCart();  // Use the addCartItems from useCart hook
+    const { addItem } = useCart();  // Use the addCartItems from useCart hook
 
     const AddToCart = () => {
         if (product) {
-            addCartItems(product,selectedSize);
+            addItem(product,selectedSize);
         }
     };
 
