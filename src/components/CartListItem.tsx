@@ -29,7 +29,7 @@ export default function CartListItem({ cartItem } :CartListItemProps ){
       </View>
       <View style={styles.quantitySelector}>
         <FontAwesome
-          onPress={() => updateQuantity(cartItem.id,cartItem.size,  -1)}
+          onPress={() => updateQuantity(cartItem.id, -1)}
           name="minus"
           color="gray"
           style={{ padding: 5 }}
@@ -37,7 +37,7 @@ export default function CartListItem({ cartItem } :CartListItemProps ){
 
         <Text style={styles.quantity}>{cartItem.quantity}</Text>
         <FontAwesome
-          onPress={() => updateQuantity(cartItem.id,cartItem.size, 1)}
+          onPress={() => updateQuantity(cartItem.id, 1)}
           name="plus"
           color="gray"
           style={{ padding: 5 }}
